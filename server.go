@@ -64,7 +64,7 @@ func (s *Server) Run() error {
 		Handler: s.Handler(),
 	}
 
-	log.Printf("Listening HTTP on %s...", s.srv.Addr)
+	log.Printf("Application server LISTENS HTTP on %s...", s.srv.Addr)
 
 	if err := s.srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		return fmt.Errorf("HTTP server failed to serve: %w", err)
@@ -74,5 +74,11 @@ func (s *Server) Run() error {
 }
 
 func (s *Server) Shutdown() error {
-	return s.srv.Shutdown(context.TODO())
+	if err := s.srv.Shutdown(context.TODO()); err != nil {
+		return err
+	}
+
+	log.Printf("Application server STOPPED listening HTTP on %s", s.srv.Addr)
+
+	return nil
 }

@@ -3,6 +3,7 @@ package broken_access_control
 import (
 	"context"
 	"fmt"
+	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"github.com/brianvoe/gofakeit/v6"
@@ -23,11 +24,8 @@ func TestURLHacker_Attack(t *testing.T) {
 		hackPath+privateAppInfoPath,
 	)
 
-	if err := hacker.Attack(); err != nil {
-		t.Errorf("failed to attack: %+v", err)
-
-		return
-	}
+	err := hacker.Attack()
+	assert.NoError(t, err)
 
 	cancel()
 }
@@ -57,11 +55,8 @@ func TestQueryHacker_Attack(t *testing.T) {
 	}
 
 	for _, hacker := range hackers {
-		if err := hacker.Attack(); err != nil {
-			t.Errorf("failed to attack: %+v", err)
-
-			return
-		}
+		err := hacker.Attack()
+		assert.NoError(t, err)
 	}
 
 	cancel()

@@ -2,6 +2,7 @@ package ssgo
 
 import (
 	"context"
+	"github.com/stretchr/testify/require"
 	"sync"
 	"testing"
 )
@@ -20,11 +21,8 @@ func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (waitFu
 	go func() {
 		defer wg.Done()
 
-		if err := srv.Run(); err != nil {
-			t.Errorf("failed to run srv: %+v", err)
-
-			return
-		}
+		err := srv.Run()
+		require.NoError(t, err)
 	}()
 
 	go func() {
@@ -32,11 +30,8 @@ func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (waitFu
 
 		<-ctx.Done()
 
-		if err := srv.Shutdown(); err != nil {
-			t.Errorf("failed to shutdown srv: %+v", err)
-
-			return
-		}
+		err := srv.Shutdown()
+		require.NoError(t, err)
 	}()
 
 	return wg.Wait
