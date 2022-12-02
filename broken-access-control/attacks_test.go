@@ -12,10 +12,10 @@ import (
 
 func TestURLHacker_Attack(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 
 	wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewURLAttackTarget()))
 	defer wait()
+	defer cancel()
 
 	baseURL := fmt.Sprintf("http://localhost:%d", ssgo.DefaultServerPort)
 	hackPath := baseURL + appPath
@@ -26,16 +26,14 @@ func TestURLHacker_Attack(t *testing.T) {
 
 	err := hacker.Attack()
 	assert.NoError(t, err)
-
-	cancel()
 }
 
 func TestQueryHacker_Attack(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 
 	wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewQueryAttackTarget()))
 	defer wait()
+	defer cancel()
 
 	baseURL := fmt.Sprintf("http://localhost:%d", ssgo.DefaultServerPort)
 	hackPath := baseURL + accountPath
@@ -58,6 +56,4 @@ func TestQueryHacker_Attack(t *testing.T) {
 		err := hacker.Attack()
 		assert.NoError(t, err)
 	}
-
-	cancel()
 }
