@@ -2,11 +2,11 @@ package broken_access_control
 
 import (
 	"context"
-	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"github.com/brianvoe/gofakeit/v6"
 	ssgo "github.com/ra9dev/ss-go"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestURLHacker_Attack(t *testing.T) {

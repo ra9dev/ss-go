@@ -3,9 +3,10 @@ package ssgo
 import (
 	"context"
 	"fmt"
-	"github.com/stretchr/testify/require"
 	"sync"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseURL string, waitFunc func()) {
