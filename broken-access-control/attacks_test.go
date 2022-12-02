@@ -12,7 +12,6 @@ import (
 
 func TestURLHacker_Attack(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-
 	wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewURLAttackTarget()))
 	defer wait()
 	defer cancel()
@@ -30,7 +29,6 @@ func TestURLHacker_Attack(t *testing.T) {
 
 func TestQueryHacker_Attack(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-
 	wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewQueryAttackTarget()))
 	defer wait()
 	defer cancel()
