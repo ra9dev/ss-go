@@ -35,7 +35,7 @@ func TestQueryHacker_Attack(t *testing.T) {
 
 	baseURL := fmt.Sprintf("http://localhost:%d", ssgo.DefaultServerPort)
 	hackPath := baseURL + accountPath
-	hackers := []ssgo.Hacker{
+	hackers := []QueryHacker{
 		NewQueryHacker(
 			hackPath,
 			map[string]string{
@@ -46,6 +46,7 @@ func TestQueryHacker_Attack(t *testing.T) {
 			hackPath,
 			map[string]string{
 				nicknameParam: gofakeit.Username(),
+				"otherParam":  gofakeit.HackerNoun(),
 			},
 		),
 	}
