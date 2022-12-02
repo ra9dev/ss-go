@@ -9,7 +9,7 @@ import (
 	ssgo "github.com/ra9dev/ss-go"
 )
 
-func TestURLDataStealer_Attack(t *testing.T) {
+func TestURLHacker_Attack(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
