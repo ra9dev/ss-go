@@ -2,7 +2,6 @@ package broken_access_control
 
 import (
 	"context"
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 
@@ -12,11 +11,10 @@ import (
 
 func TestURLHacker_Attack(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewURLAttackTarget()))
+	baseURL, wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewURLAttackTarget()))
 	defer wait()
 	defer cancel()
 
-	baseURL := fmt.Sprintf("http://localhost:%d", ssgo.DefaultServerPort)
 	hackPath := baseURL + appPath
 	hacker := NewURLHacker(
 		hackPath+publicAppInfoPath,
@@ -29,11 +27,10 @@ func TestURLHacker_Attack(t *testing.T) {
 
 func TestQueryHacker_Attack(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewQueryAttackTarget()))
+	baseURL, wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewQueryAttackTarget()))
 	defer wait()
 	defer cancel()
 
-	baseURL := fmt.Sprintf("http://localhost:%d", ssgo.DefaultServerPort)
 	hackPath := baseURL + accountPath
 	hackers := []QueryHacker{
 		NewQueryHacker(

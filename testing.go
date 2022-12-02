@@ -2,12 +2,13 @@ package ssgo
 
 import (
 	"context"
+	"fmt"
 	"github.com/stretchr/testify/require"
 	"sync"
 	"testing"
 )
 
-func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (waitFunc func()) {
+func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseURL string, waitFunc func()) {
 	t.Helper()
 
 	srv := NewServer(
@@ -34,5 +35,5 @@ func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (waitFu
 		require.NoError(t, err)
 	}()
 
-	return wg.Wait
+	return fmt.Sprintf("http://localhost:%d", srv.port), wg.Wait
 }
