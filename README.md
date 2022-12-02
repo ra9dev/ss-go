@@ -1,4 +1,4 @@
-# Safe & Secure Go Development
+# Safe&Secure Go Development
 
 Course source code written in **Golang**.
 
