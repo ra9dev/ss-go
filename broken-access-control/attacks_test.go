@@ -3,9 +3,10 @@ package broken_access_control
 import (
 	"context"
 	"fmt"
+	"testing"
+
 	"github.com/brianvoe/gofakeit/v6"
 	ssgo "github.com/ra9dev/ss-go"
-	"testing"
 )
 
 func TestURLDataStealer_Attack(t *testing.T) {

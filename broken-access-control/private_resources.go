@@ -1,11 +1,12 @@
 package broken_access_control
 
 import (
+	"net/http"
+
 	"github.com/brianvoe/gofakeit/v6"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
 	ssgo "github.com/ra9dev/ss-go"
-	"net/http"
 )
 
 const (

@@ -2,10 +2,11 @@ package broken_access_control
 
 import (
 	"fmt"
-	ssgo "github.com/ra9dev/ss-go"
 	"io"
 	"log"
 	"net/http"
+
+	ssgo "github.com/ra9dev/ss-go"
 )
 
 // block of vars to force interface implementation
