@@ -9,6 +9,8 @@ import (
 	"net/http"
 )
 
+const DefaultServerPort = 8080
+
 type ServerOpt func(*Server)
 
 func ServerWithRoute(route ServerRoute) ServerOpt {
