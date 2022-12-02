@@ -10,7 +10,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-const DefaultServerPort = 8080
+const defaultServerPort = 8080
 
 type ServerOpt func(*Server)
 

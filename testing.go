@@ -13,7 +13,7 @@ func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseUR
 	t.Helper()
 
 	srv := NewServer(
-		DefaultServerPort,
+		defaultServerPort,
 		opts...,
 	)
 
