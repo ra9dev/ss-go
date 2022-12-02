@@ -55,7 +55,6 @@ func NewQueryAttackTarget() ssgo.ServerRoute {
 			"name":        gofakeit.Name(),
 			"phone":       gofakeit.Phone(),
 			"email":       gofakeit.Email(),
-			"address":     gofakeit.Address(),
 		})
 	})
 
