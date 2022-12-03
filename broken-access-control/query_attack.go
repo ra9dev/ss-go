@@ -11,11 +11,13 @@ import (
 
 var _ ssgo.Hacker = (*QueryHacker)(nil)
 
+// QueryHacker steals data from an url with an unprotected query param
 type QueryHacker struct {
 	url    string
 	params map[string]string
 }
 
+// NewQueryHacker constructor
 func NewQueryHacker(url string, params map[string]string) QueryHacker {
 	return QueryHacker{
 		url:    url,
@@ -23,6 +25,7 @@ func NewQueryHacker(url string, params map[string]string) QueryHacker {
 	}
 }
 
+// Attack implementation of ssgo.Hacker
 func (q QueryHacker) Attack() error {
 	req, err := http.NewRequest(http.MethodGet, q.url, nil)
 	if err != nil {

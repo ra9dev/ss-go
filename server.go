@@ -10,8 +10,10 @@ import (
 	chi "github.com/go-chi/chi/v5"
 )
 
+// ServerOpt to enhance Server
 type ServerOpt func(*Server)
 
+// ServerWithRoute mounts routes at a root Server.Handler
 func ServerWithRoute(route ServerRoute) ServerOpt {
 	return func(srv *Server) {
 		srv.routes = append(srv.routes, route)
@@ -19,6 +21,7 @@ func ServerWithRoute(route ServerRoute) ServerOpt {
 }
 
 type (
+	// Server abstraction for an HTTP protocol
 	Server struct {
 		port uint
 		srv  *http.Server
@@ -26,12 +29,14 @@ type (
 		routes []ServerRoute
 	}
 
+	// ServerRoute that can be registered via ServerWithRoute
 	ServerRoute struct {
 		Pattern string
 		Handler http.Handler
 	}
 )
 
+// NewServer constructor
 func NewServer(port uint, opts ...ServerOpt) Server {
 	srv := Server{
 		port: port,
@@ -44,6 +49,7 @@ func NewServer(port uint, opts ...ServerOpt) Server {
 	return srv
 }
 
+// Handler mounts multiple ServerRoute and handles HTTP requests
 func (s Server) Handler() http.Handler {
 	router := chi.NewRouter()
 
@@ -54,6 +60,7 @@ func (s Server) Handler() http.Handler {
 	return router
 }
 
+// Run HTTP Server
 func (s *Server) Run() error {
 	addr := fmt.Sprintf(":%d", s.port)
 
@@ -71,6 +78,7 @@ func (s *Server) Run() error {
 	return nil
 }
 
+// Shutdown HTTP Server
 func (s *Server) Shutdown() error {
 	if err := s.srv.Shutdown(context.TODO()); err != nil {
 		return fmt.Errorf("failed to shutdown: %w", err)

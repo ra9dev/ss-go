@@ -27,3 +27,7 @@ lint:
 
 test:
 	go test -v ./...
+
+git-hooks:
+	$(call describe_job,"Setting up git hooks")
+	/bin/sh ./scripts/hooks.sh

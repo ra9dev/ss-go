@@ -14,12 +14,12 @@ const testServerRoutinesNum = 2
 
 var testServerPort uint32 = 8080
 
-// RunTestServer listens http on defaultServerPort for testing purposes
+// RunTestServer listens http on incrementing port for testing purposes
 func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseURL string, waitFunc func()) {
 	t.Helper()
 
 	srv := NewServer(
-		uint(testServerPort),
+		uint(atomic.LoadUint32(&testServerPort)),
 		opts...,
 	)
 

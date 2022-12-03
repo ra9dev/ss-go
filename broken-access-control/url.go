@@ -16,6 +16,7 @@ const (
 	privateAppInfoPath = "/adminInfo"
 )
 
+// NewURLAttackTarget to imitate vulnerability target for URLHacker
 func NewURLAttackTarget() ssgo.ServerRoute {
 	router := chi.NewRouter()
 

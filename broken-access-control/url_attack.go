@@ -11,10 +11,12 @@ import (
 
 var _ ssgo.Hacker = (*URLHacker)(nil)
 
+// URLHacker steals data from multiple urls supposed to be private
 type URLHacker struct {
 	urls []string
 }
 
+// NewURLHacker constructor
 func NewURLHacker(urls ...string) URLHacker {
 	return URLHacker{urls: urls}
 }
@@ -37,6 +39,7 @@ func (h URLHacker) attack(url string) error {
 	return nil
 }
 
+// Attack implementation of ssgo.Hacker
 func (h URLHacker) Attack() error {
 	for _, url := range h.urls {
 		if err := h.attack(url); err != nil {

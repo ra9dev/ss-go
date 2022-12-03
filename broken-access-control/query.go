@@ -15,6 +15,7 @@ const (
 	nicknameParam = "nickname"
 )
 
+// NewQueryAttackTarget to imitate vulnerability target for QueryHacker
 func NewQueryAttackTarget() ssgo.ServerRoute {
 	router := chi.NewRouter()
 
