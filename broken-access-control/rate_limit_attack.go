@@ -2,10 +2,11 @@ package broken_access_control
 
 import (
 	"fmt"
-	ssgo "github.com/ra9dev/ss-go"
 	"io"
 	"net/http"
 	"sync"
+
+	ssgo "github.com/ra9dev/ss-go"
 )
 
 var _ ssgo.Hacker = (*RateLimitHacker)(nil)

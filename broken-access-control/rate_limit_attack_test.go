@@ -2,10 +2,12 @@ package broken_access_control
 
 import (
 	"context"
-	"github.com/brianvoe/gofakeit/v6"
-	ssgo "github.com/ra9dev/ss-go"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	gofakeit "github.com/brianvoe/gofakeit/v6"
+	"github.com/stretchr/testify/assert"
+
+	ssgo "github.com/ra9dev/ss-go"
 )
 
 func TestRateLimitHacker_Attack(t *testing.T) {
