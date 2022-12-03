@@ -12,7 +12,7 @@ import (
 
 const testServerRoutinesNum = 2
 
-var testServerPort uint32 = 8080
+var testServerPort uint32 = 9999
 
 // RunTestServer listens http on incrementing port for testing purposes
 func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseURL string, waitFunc func()) {
