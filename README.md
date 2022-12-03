@@ -1,5 +1,9 @@
 # Safe&Secure Go Development
 
+[![ci](https://github.com/ra9dev/ss-go/actions/workflows/cicd.yaml/badge.svg)](https://github.com/ra9dev/ss-go/actions/workflows/cicd.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ra9dev/ss-go)](https://goreportcard.com/report/github.com/ra9dev/ss-go)
+[![Documentation](https://godoc.org/github.com/ra9dev/ss-go?status.svg)](https://pkg.go.dev/mod/github.com/ra9dev/ss-go)
+
 Course source code written in **Golang**.
 
 The course aims to provide best practices for developing secure server 

@@ -11,6 +11,8 @@ import (
 )
 
 func TestQueryHacker_Attack(t *testing.T) {
+	t.Parallel()
+
 	ctx, cancel := context.WithCancel(context.Background())
 
 	baseURL, wait := ssgo.RunTestServer(t, ctx, ssgo.ServerWithRoute(NewQueryAttackTarget()))

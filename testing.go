@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"sync"
+	"sync/atomic"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -11,13 +12,18 @@ import (
 
 const testServerRoutinesNum = 2
 
+var testServerPort uint32 = 8080
+
+// RunTestServer listens http on defaultServerPort for testing purposes
 func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseURL string, waitFunc func()) {
 	t.Helper()
 
 	srv := NewServer(
-		defaultServerPort,
+		uint(testServerPort),
 		opts...,
 	)
+
+	atomic.AddUint32(&testServerPort, 1) // for paralleltest
 
 	wg := new(sync.WaitGroup)
 	wg.Add(testServerRoutinesNum)
