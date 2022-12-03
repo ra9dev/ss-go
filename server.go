@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 
 	chi "github.com/go-chi/chi/v5"
@@ -69,7 +68,7 @@ func (s *Server) Run() error {
 		Handler: s.Handler(),
 	}
 
-	log.Printf("Application server LISTENS HTTP on %s...", s.srv.Addr)
+	ServerLogger.Printf("Application server LISTENS HTTP on %s...", s.srv.Addr)
 
 	if err := s.srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		return fmt.Errorf("HTTP server failed to serve: %w", err)
@@ -84,7 +83,7 @@ func (s *Server) Shutdown() error {
 		return fmt.Errorf("failed to shutdown: %w", err)
 	}
 
-	log.Printf("Application server STOPPED listening HTTP on %s", s.srv.Addr)
+	ServerLogger.Printf("Application server STOPPED listening HTTP on %s", s.srv.Addr)
 
 	return nil
 }

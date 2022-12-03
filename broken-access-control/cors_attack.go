@@ -3,7 +3,6 @@ package broken_access_control
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 
 	ssgo "github.com/ra9dev/ss-go"
@@ -47,7 +46,7 @@ func (c CORSHacker) attack(origin string) error {
 		return fmt.Errorf("failed to read data from %s: %w", url, err)
 	}
 
-	log.Printf("%s is vulnerable for origin %s, data has been stolen: %s", url, origin, data)
+	ssgo.HackerLogger.Printf("%s is vulnerable for origin %s, data has been stolen: %s", url, origin, data)
 
 	return nil
 }

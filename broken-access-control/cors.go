@@ -1,7 +1,6 @@
 package broken_access_control
 
 import (
-	"log"
 	"net/http"
 
 	gofakeit "github.com/brianvoe/gofakeit/v6"
@@ -28,7 +27,7 @@ func NewCORSAttackTarget() ssgo.ServerRoute {
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		origin := r.Header.Get(locationPath)
 
-		log.Printf("%s request processed for origin %s", locationPath, origin)
+		ssgo.ServerLogger.Printf("%s request processed for origin %s", locationPath, origin)
 
 		render.JSON(w, r, gofakeit.Address())
 	})

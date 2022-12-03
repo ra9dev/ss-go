@@ -3,7 +3,6 @@ package broken_access_control
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 
 	ssgo "github.com/ra9dev/ss-go"
@@ -52,7 +51,7 @@ func (q QueryHacker) Attack() error {
 		return fmt.Errorf("failed to read data from %s: %w", req.URL.String(), err)
 	}
 
-	log.Printf("Data has been stolen from %s: %s", req.URL.String(), data)
+	ssgo.HackerLogger.Printf("Data has been stolen from %s: %s", req.URL.String(), data)
 
 	return nil
 }

@@ -3,7 +3,6 @@ package broken_access_control
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 
 	ssgo "github.com/ra9dev/ss-go"
@@ -34,7 +33,7 @@ func (h URLHacker) attack(url string) error {
 		return fmt.Errorf("failed to read data from %s: %w", url, err)
 	}
 
-	log.Printf("Data has been stolen from %s: %s", url, data)
+	ssgo.HackerLogger.Printf("Data has been stolen from %s: %s", url, data)
 
 	return nil
 }
