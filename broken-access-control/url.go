@@ -3,9 +3,10 @@ package broken_access_control
 import (
 	"net/http"
 
-	"github.com/brianvoe/gofakeit/v6"
-	"github.com/go-chi/chi/v5"
+	gofakeit "github.com/brianvoe/gofakeit/v6"
+	chi "github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
+
 	ssgo "github.com/ra9dev/ss-go"
 )
 
@@ -13,11 +14,6 @@ const (
 	appPath            = "/app"
 	publicAppInfoPath  = "/info"
 	privateAppInfoPath = "/adminInfo"
-)
-
-const (
-	accountPath   = "/account"
-	nicknameParam = "nickname"
 )
 
 func NewURLAttackTarget() ssgo.ServerRoute {
@@ -40,26 +36,6 @@ func NewURLAttackTarget() ssgo.ServerRoute {
 
 	return ssgo.ServerRoute{
 		Pattern: appPath,
-		Handler: router,
-	}
-}
-
-func NewQueryAttackTarget() ssgo.ServerRoute {
-	router := chi.NewRouter()
-
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		nickname := r.URL.Query().Get(nicknameParam)
-
-		render.JSON(w, r, map[string]any{
-			nicknameParam: nickname,
-			"name":        gofakeit.Name(),
-			"phone":       gofakeit.Phone(),
-			"email":       gofakeit.Email(),
-		})
-	})
-
-	return ssgo.ServerRoute{
-		Pattern: accountPath,
 		Handler: router,
 	}
 }

@@ -9,6 +9,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+const testServerRoutinesNum = 2
+
 func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseURL string, waitFunc func()) {
 	t.Helper()
 
@@ -18,7 +20,7 @@ func RunTestServer(t *testing.T, ctx context.Context, opts ...ServerOpt) (baseUR
 	)
 
 	wg := new(sync.WaitGroup)
-	wg.Add(2)
+	wg.Add(testServerRoutinesNum)
 
 	go func() {
 		defer wg.Done()

@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
+	chi "github.com/go-chi/chi/v5"
 )
 
 const defaultServerPort = 8080
@@ -75,7 +75,7 @@ func (s *Server) Run() error {
 
 func (s *Server) Shutdown() error {
 	if err := s.srv.Shutdown(context.TODO()); err != nil {
-		return err
+		return fmt.Errorf("failed to shutdown: %w", err)
 	}
 
 	log.Printf("Application server STOPPED listening HTTP on %s", s.srv.Addr)
