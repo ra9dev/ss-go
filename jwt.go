@@ -20,8 +20,10 @@ const (
 )
 
 type (
+	// Permission for entity
 	Permission string
 
+	// Claims to store permissions per entity
 	Claims struct {
 		jwt.RegisteredClaims
 
